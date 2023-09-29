@@ -17,9 +17,9 @@ class CreateOmvsdTable extends Migration
             $table->id();
             $table->string('name', 255);
             $table->string('nr_inv', 255);
-            $table->integer('section_id')->default('0');;
-            $table->integer('user_id')->default('0');;
-            $table->integer('tip_id')->default('0');;
+            $table->integer('section_id')->default('0');
+            $table->integer('personal_id')->default('0');
+            $table->integer('tip_id')->default('0');
             $table->timestamps();
         });
     }

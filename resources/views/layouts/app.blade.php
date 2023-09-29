@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -38,6 +39,36 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Liste
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{route('omvsd_neatribuite')}}">OMVSD Neatribuite</a></li>
+                                <li><a class="dropdown-item" href="{{route('mf_neatribuite')}}">MF Neatribuite</a></li>
+                                <li><a class="dropdown-item" href="{{route('sectii')}}">Sectii</a></li>
+                                <li><a class="dropdown-item" href="{{route('tip.index')}}">Tip</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{route('personal.index')}}">Personal</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Setari
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{route('omvsd.index')}}">OMVSD</a></li>
+                                <li><a class="dropdown-item" href="{{route('mf.index')}}">MF</a></li>
+                                <li><a class="dropdown-item" href="{{route('sectii.index')}}">Sectii</a></li>
+                                <li><a class="dropdown-item" href="{{route('tip.index')}}">Tip</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{route('personal.index')}}">Personal</a></li>
+                            </ul>
+                        </li>
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))

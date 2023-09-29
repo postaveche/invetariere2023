@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Section;
 use Illuminate\Http\Request;
+use App\Models\Mf;
+use App\Models\Tip;
+use App\Models\Personal;
 
 class MfController extends Controller
 {
@@ -13,7 +17,10 @@ class MfController extends Controller
      */
     public function index()
     {
-        //
+        $allmf = Mf::orderBy('name', 'ASC')->get();
+        return view('mf', [
+            'allmf' => $allmf,
+        ]);
     }
 
     /**
@@ -23,7 +30,14 @@ class MfController extends Controller
      */
     public function create()
     {
-        //
+        $alltip = Tip::all();
+        $allsectii = Section::all();
+        $allperson = Personal::all();
+        return view('mf_create',[
+            'alltip' => $alltip,
+            'allsectii' => $allsectii,
+            'allpersonal' => $allperson,
+        ]);
     }
 
     /**
@@ -34,7 +48,15 @@ class MfController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
+        $mf = new Mf();
+        $mf->name = $request->name;
+        $mf->nr_inv = $request->nr_inv;
+        $mf->tip_id = $request->tip;
+        $mf->section_id = $request->sectia;
+        $mf->personal_id = $request->person;
+        $mf->save();
+        return redirect()->back()->with('message', 'MF a fost adaugat cu succes!');
     }
 
     /**
@@ -56,7 +78,17 @@ class MfController extends Controller
      */
     public function edit($id)
     {
-        //
+        $mf = Mf::where('id', $id)->first();
+        $alltip = Tip::all();
+        $allsectii = Section::all();
+        $allperson = Personal::all();
+        //dd($omvsd);
+        return view('mf_edit', [
+            'mf' => $mf,
+            'alltip' => $alltip,
+            'allsectii' => $allsectii,
+            'allpersonal' => $allperson,
+        ]);
     }
 
     /**
@@ -68,7 +100,15 @@ class MfController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $mf = Mf::find($id);
+        $mf->name = $request->name;
+        $mf->nr_inv = $request->nr_inv;
+        $mf->section_id = $request->sectia;
+        $mf->tip_id = $request->tip;
+        $mf->personal_id = $request->person;
+        $mf->save();
+        return redirect()->route('mf.index')
+            ->with('success', 'Modificarile au fost efectuate cu succes!');
     }
 
     /**

@@ -14,7 +14,7 @@ class SectionController extends Controller
      */
     public function index()
     {
-        $allsectii = Section::all();
+        $allsectii = Section::orderBy('nume', 'ASC')->get();
         return view('sectii',[
             'allsection' => $allsectii,
         ]);

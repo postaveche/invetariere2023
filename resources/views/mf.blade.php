@@ -20,17 +20,38 @@
                 <tr>
                     <th style="width: 10px">#</th>
                     <th>Nume</th>
+                    <th style="width: 60px">Nr. inv</th>
+                    <th>Tip</th>
                     <th>Sectia</th>
-                    <th style="width: 40px">Action</th>
+                    <th style="width: 150px">Persoana</th>
+                    <th style="width: 50px">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($allperson as $personal)
+                @foreach($allmf as $mf)
                 <tr>
-                    <td>{{$personal->id}}</td>
-                    <td>{{$personal->name}}</td>
-                    <td>{{$personal->section->nume}}</td>
-                    <td><span class="badge bg-danger">Edit</span></td>
+                    <td>{{$mf->id}}</td>
+                    <td>{{$mf->name}}</td>
+                    <td>{{$mf->nr_inv}}</td>
+                    @if($mf->tip == null)
+                        <td>{{$mf->tip_id}}</td>
+                    @else
+                        <td>{{$mf->tip->nume}}</td>
+                    @endif
+                    @if($mf->section == null)
+                        <td>{{$mf->section_id}}</td>
+                    @else
+                        <td>{{$mf->section->nume}}</td>
+                    @endif
+                    @if($mf->personal == null)
+                        <td>{{$mf->personal_id}}</td>
+                    @else
+                        <td>{{$mf->personal->name}}</td>
+                    @endif
+                    <td>
+                        <a href="{{route('mf.edit', $mf->id)}}"><i class="fa-regular fa-pen-to-square"></i></a>  |
+                        <a href="{{route('mf.destroy', $mf->id)}}" style="color: red"><i class="fa-solid fa-trash"></i></a>
+                    </td>
                 </tr>@endforeach
                 </tbody>
             </table>
